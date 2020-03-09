@@ -195,12 +195,7 @@ class RussianCalendar
                 // есть файл кэша
                 // надо открыть его
     
-                $handle = curl_init();
-                $url = $cacheFile;
-                curl_setopt($handle, CURLOPT_URL, $url);
-                curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
-                $cache = curl_exec($handle);
-                curl_close($handle);
+                $cache = file_get_contents($cacheFile);
                 
                 if (empty($cache)) {
                     $this->throwException('Fails read cache file.');
@@ -596,11 +591,11 @@ class RussianCalendar
     /**
      * Выбрасывает исключение
      * @param string $message
-     * @throws \RussianCalendarException
+     * @throws RussianCalendarException
      */
     public function throwException($message)
     {
-        throw new \RussianCalendarException($message);
+        throw new RussianCalendarException($message);
     }
 }
 
