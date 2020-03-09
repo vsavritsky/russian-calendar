@@ -12,7 +12,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"gozoro\\russian_calendar\\": "src"
+			"vsavritsky\\russian_calendar\\": "src"
 		}
 	}
 }
