@@ -149,12 +149,12 @@ print count($holidayArray); // 6
 ```php
 $cache_folder = '/var/www/site/runtime/xmlcalendar';
 $cache_duration = 60*60*24; // кэш файла на сутки
-$calendar = new \gozoro\russian_calendar\RussianCalendar('ru', $cache_folder, $cache_duration);
+$calendar = new \Vsavritsky\RussianCalendar\RussianCalendar('ru', $cache_folder, $cache_duration);
 ```
 
 **Названия праздников на английском**
 
 ```php
-$calendar = new \gozoro\russian_calendar\RussianCalendar('en');
+$calendar = new \Vsavritsky\RussianCalendar\RussianCalendar('en');
 ```
 
