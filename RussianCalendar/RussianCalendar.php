@@ -175,7 +175,7 @@ class RussianCalendar
         } elseif ($date instanceof \DateTime) {
             return $date->getTimestamp();
         }
-    
+        
         $this->throwException("Invalid date.");
     }
     
@@ -194,7 +194,7 @@ class RussianCalendar
             if (file_exists($cacheFile)) {
                 // есть файл кэша
                 // надо открыть его
-    
+                
                 $cache = file_get_contents($cacheFile);
                 
                 if (empty($cache)) {
@@ -238,7 +238,13 @@ class RussianCalendar
      */
     protected function getXmlContent($filename)
     {
-        $xmlContent = file_get_contents($filename);
+        $ch = curl_init();
+        $timeout = 10;
+        curl_setopt($ch, CURLOPT_URL, $filename);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+        $xmlContent = curl_exec($ch);
+        curl_close($ch);
         
         if (empty($xmlContent)) {
             $this->throwException("Fails get content $filename");
@@ -547,7 +553,7 @@ class RussianCalendar
             
             unset($weekendDates[count($weekendDates) - 1]);
         }
-    
+        
         return $weekendDates;
     }
     
@@ -598,5 +604,3 @@ class RussianCalendar
         throw new RussianCalendarException($message);
     }
 }
-
-
